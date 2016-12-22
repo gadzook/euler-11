@@ -22,8 +22,6 @@ splitInput = []
 resultsList = []
 input = input.split("\n")
 
-
-
 def multiply(list,row,column,lineLength,direction):
 	product = int(list[row][column]) #init with entry passed to function
 	try:
