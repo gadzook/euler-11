@@ -24,47 +24,18 @@ input = input.split("\n")
 
 
 
-def multiplyDown(list,row,column,lineLength):
+def multiply(list,row,column,lineLength,direction):
 	product = int(list[row][column]) #init with entry passed to function
 	try:
 		for i in range(1,lineLength):
-			nextNumber = int(list[row][column+i])
+			if direction == "down": nextNumber = int(list[row+i][column])
+			elif direction == "right": nextNumber = int(list[row][column+i])
+			elif direction == "downRight": nextNumber = int(list[row+i][column+i])
+			elif direction == "downLeft": nextNumber = int(list[row+i][column-i])
 			product *= nextNumber
 		return product
 	except IndexError:
 		pass
-
-def multiplyRight(list,row,column,lineLength):
-	product = int(list[row][column])
-	try:
-		for i in range(1,lineLength):
-			nextNumber = int(list[row+i][column])
-			product *= nextNumber
-		return product
-	except IndexError:
-		pass
-
-def multiplyDownRight(list,row,column,lineLength):
-	product = int(list[row][column])
-	try:
-		for i in range(1,lineLength):
-			nextNumber = int(list[row+i][column+i])
-			product *= nextNumber
-		return product
-	except IndexError:
-		pass
-
-def multiplyDownLeft(list,row,column,lineLength):
-	product = int(list[row][column])
-	try:
-		for i in range(1,lineLength):
-			nextNumber = int(list[row+i][column-i])
-			product *= nextNumber
-		return product
-	except IndexError:
-		pass
-
-
 
 for line in input:
 	line = line.split()
@@ -77,10 +48,10 @@ for line in enumerate(splitInput):
 
 		#adds to list the results of functions.
 
-		productDown = multiplyDown(splitInput,row,column,4)
-		productRight = multiplyRight(splitInput,row,column,4)
-		productDownRight = multiplyDownRight(splitInput,row,column,4)
-		productDownLeft = multiplyDownLeft(splitInput,row,column,4)
+		productDown = multiply(splitInput,row,column,4,"down")
+		productRight = multiply(splitInput,row,column,4,"right")
+		productDownRight = multiply(splitInput,row,column,4,"downRight")
+		productDownLeft = multiply(splitInput,row,column,4,"downLeft")
 
 		if productDown != None: resultsList.append(productDown)
 		if productRight != None: resultsList.append(productRight)
